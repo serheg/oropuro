@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhatsAPP</title>
+    <style>
+        /* Reset default margins and ensure full height */
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        /* Container for the iframe */
+        .iframe-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        /* Styling for the iframe */
+        .responsive-iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;              /* Remove default border */
+            background: transparent; /* Ensure transparency */
+        }
+    </style>
+</head>
+<body>
+    <div class="iframe-container">
+        <iframe 
+            class="responsive-iframe"
+            allowfullscreen
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            loading="lazy"
+            referrerpolicy="no-referrer"
+            src="https://new.dialogs.pro">
+        </iframe>
+    </div>
+
+    <script>
+        // Ensure proper sizing on iOS devices
+        function handleResize() {
+            const container = document.querySelector('.iframe-container');
+            const iframe = document.querySelector('.responsive-iframe');
+            
+            if (container && iframe) {
+                // Force height recalculation
+                container.style.height = window.innerHeight + 'px';
+                iframe.style.height = container.clientHeight + 'px';
+            }
+        }
+
+        // Add event listeners
+        window.addEventListener('resize', handleResize);
+        window.addEventListener('orientationchange', handleResize);
+        
+        // Initial call
+        handleResize();
+    </script>
+</body>
+</html>
